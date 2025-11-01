@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin — Premium Promo Kodlar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #0a0a14;
+            --card: #141424;
+            --text: #e8e8ff;
+            --accent: #00d4ff;
+            --success: #00ff9d;
+            --error: #ff3860;
+            --free: #ff00b8;
+            --border: #252540;
+            --gradient: linear-gradient(135deg, #00d4ff, #ff00b8, #7c3aed);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            padding: 20px;
+            min-height: 100dvh;
+            line-height: 1.6;
+        }
+
+        /* Mobil uchun katta matn */
+        @media (max-width: 768px) {
+            html { font-size: 18px; }
+            body { padding: 16px; }
+        }
+
+        /* Animatsion fon */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: var(--gradient);
+            opacity: 0.05;
+            z-index: -1;
+            animation: bgShift 15s ease infinite;
+        }
+
+        @keyframes bgShift {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(-40%); }
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+            letter-spacing: -1px;
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 10px rgba(0,212,255,0.5)); }
+            to { filter: drop-shadow(0 0 20px rgba(255,0,184,0.7)); }
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #aaa;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        .panel {
+            background: var(--card);
+            border-radius: 24px;
+            padding: 28px;
+            margin-bottom: 32px;
+            border: 1px solid var(--border);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.5);
+            transition: all 0.4s ease;
+        }
+
+        .panel:hover {
+            box-shadow: 0 20px 50px rgba(0,212,255,0.15);
+            border-color: var(--accent);
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1rem;
+            color: #ccc;
+            font-weight: 600;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 16px;
+            background: #1a1a2e;
+            border: 1.5px solid var(--border);
+            border-radius: 14px;
+            color: #fff;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(0,212,255,0.2);
+        }
+
+        textarea { resize: vertical; min-height: 80px; }
+
+        .btn {
+            padding: 14px 24px;
+            border-radius: 16px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: #000;
+        }
+
+        .btn-success:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,255,157,0.4);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #000;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,212,255,0.4);
+        }
+
+        .btn-danger {
+            background: var(--error);
+            color: #fff;
+            padding: 10px 16px;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 12px rgba(255,56,96,0.3);
+        }
+
+        .btn-danger:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255,56,96,0.4);
+        }
+
+        /* Promo kod qo‘shish */
+        .promo-creator {
+            margin-top: 28px;
+            padding-top: 24px;
+            border-top: 1px dashed var(--border);
+        }
+
+        .promo-creator h3 {
+            font-size: 1.3rem;
+            color: var(--free);
+            margin-bottom: 16px;
+        }
+
+        .promo-input-group {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .promo-input-group input {
+            flex: 1;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+        }
+
+        .promo-list-preview {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .promo-tag {
+            background: rgba(255,0,184,0.15);
+            color: var(--free);
+            padding: 8px 14px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1.5px dashed var(--free);
+            transition: all 0.3s ease;
+        }
+
+        .promo-tag:hover {
+            background: rgba(255,0,184,0.25);
+            border-style: solid;
+            transform: scale(1.05);
+        }
+
+        .promo-tag .remove {
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--error);
+            font-size: 1.1rem;
+        }
+
+        /* Mavjud paketlar */
+        .case-list {
+            display: grid;
+            gap: 24px;
+            margin-top: 20px;
+            grid-template-columns: 1fr;
+        }
+
+        @media (min-width: 640px) {
+            .case-list { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (min-width: 1024px) {
+            .case-list { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        .case-card {
+            background: #1a1a2e;
+            border-radius: 20px;
+            padding: 20px;
+            border: 1px solid var(--border);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .case-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: var(--gradient);
+            opacity: 0;
+            transition: opacity 0.4s;
+            border-radius: 20px;
+        }
+
+        .case-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .case-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(0,212,255,0.2);
+        }
+
+        .case-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 14px;
+            margin-bottom: 16px;
+            background: #222;
+        }
+
+        .case-card h3 {
+            font-size: 1.4rem;
+            color: var(--accent);
+            margin: 12px 0 8px;
+            font-weight: 700;
+        }
+
+        .case-card p {
+            font-size: 0.95rem;
+            color: #bbb;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .case-type {
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 6px 12px;
+            border-radius: 30px;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        .paid { background: var(--success); color: #000; }
+        .free { background: var(--free); color: #fff; }
+
+        .promo-section {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px dashed var(--border);
+        }
+
+        .promo-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .skeleton {
+            background: linear-gradient(90deg, #1a1a2e 25%, #222 50%, #1a1a2e 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+            border-radius: 12px;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .skeleton-img { height: 180px; border-radius: 14px; }
+        .skeleton-title { height: 28px; width: 80%; margin: 12px 0 8px; }
+        .skeleton-desc { height: 40px; width: 100%; margin-bottom: 12px; }
+        .skeleton-tag { height: 32px; width: 70px; border-radius: 30px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Admin Panel</h1>
+    <p class="subtitle">Promo kodlarni boshqarish • Yangi paket qo‘shish • O‘chirish</p>
+
+    <!-- YANGI PAKET -->
+    <div class="panel">
+        <h2><i class="fas fa-plus-circle"></i> Yangi Promo Paket</h2>
+
+        <div class="form-group">
+            <label>Paket nomi</label>
+            <input type="text" id="case-name" placeholder="VIP Chill Pack 2025">
+        </div>
+
+        <div class="form-group">
+            <label>Tavsif</label>
+            <textarea id="case-desc" placeholder="Eng yaxshi takliflar..."></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Rasm URL (600x400)</label>
+            <input type="text" id="case-image" placeholder="https://...">
+        </div>
+
+        <div class="form-group">
+            <label>Narx (so‘m)</label>
+            <input type="number" id="case-price" placeholder="49000">
+        </div>
+
+        <div class="form-group">
+            <label>Turi</label>
+            <select id="case-type">
+                <option value="paid">Pullik (Payme)</option>
+                <option value="free">Tekin (Bepul)</option>
+            </select>
+        </div>
+
+        <!-- PROMO KODLAR -->
+        <div class="promo-creator">
+            <h3><i class="fas fa-key"></i> Promo Kodlar (vergul bilan ajrating)</h3>
+            <div class="promo-input-group">
+                <input type="text" id="new-promo-input" placeholder="VIP2025, GOLD50, FREE100..." onkeydown="if(event.key==='Enter') addPromoToNewCase()">
+                <button class="btn btn-primary" onclick="addPromoToNewCase()">
+                    <i class="fas fa-plus"></i> Qo‘shish
+                </button>
+            </div>
+            <div class="promo-list-preview" id="new-promo-list">
+                <span style="color:#666;">Kodlar bu yerda ko‘rinadi...</span>
+            </div>
+        </div>
+
+        <button class="btn btn-success" style="margin-top:24px; width:100%;" onclick="addPackage()">
+            <i class="fas fa-save"></i> PAKETNI SAQLASH
+        </button>
+    </div>
+
+    <!-- MAVJUD PAKETLAR -->
+    <div class="panel">
+        <h2><i class="fas fa-box"></i> Mavjud Paketlar</h2>
+        <div class="case-list" id="case-list">
+            <!-- Skeleton -->
+            <div class="case-card">
+                <div class="skeleton skeleton-img"></div>
+                <div class="skeleton skeleton-title"></div>
+                <div class="skeleton skeleton-desc"></div>
+                <div class="skeleton skeleton-tag"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const ADMIN_PASS = "admin2025";
+    if (prompt("Parolni kiriting:") !== ADMIN_PASS) {
+        alert("Noto'g'ri parol!");
+        window.location.href = "about:blank";
+    }
+
+    let packages = JSON.parse(localStorage.getItem('packages') || '[]');
+    let promoCodes = JSON.parse(localStorage.getItem('promoCodes') || '{}');
+    let newPromoList = [];
+
+    function addPromoToNewCase() {
+        const input = document.getElementById('new-promo-input');
+        const raw = input.value.trim().toUpperCase();
+        if (!raw) return;
+
+        const codes = raw.split(/[\s,;]+/).filter(c => c && !newPromoList.includes(c));
+        newPromoList.push(...codes);
+        input.value = '';
+        renderNewPromoList();
+    }
+
+    function removeFromNewPromo(code) {
+        newPromoList = newPromoList.filter(c => c !== code);
+        renderNewPromoList();
+    }
+
+    function renderNewPromoList() {
+        const container = document.getElementById('new-promo-list');
+        container.innerHTML = newPromoList.length ? newPromoList.map(c => `
+            <div class="promo-tag">${c}<span class="remove" onclick="removeFromNewPromo('${c}')">×</span></div>
+        `).join('') : '<span style="color:#666;font-size:0.9rem;">Hali kod yo‘q</span>';
+    }
+
+    function addPackage() {
+        const name = document.getElementById('case-name').value.trim();
+        const desc = document.getElementById('case-desc').value.trim();
+        const image = document.getElementById('case-image').value.trim();
+        const price = parseInt(document.getElementById('case-price').value) || 0;
+        const type = document.getElementById('case-type').value;
+
+        if (!name || !image || newPromoList.length === 0) {
+            alert("Nomi, rasm va promo kodlar majburiy!");
+            return;
+        }
+
+        const id = Date.now().toString();
+        packages.push({ id, name, desc, image, price, type });
+        promoCodes[id] = [...newPromoList];
+
+        localStorage.setItem('packages', JSON.stringify(packages));
+        localStorage.setItem('promoCodes', JSON.stringify(promoCodes));
+
+        // Tozalash
+        ['case-name','case-desc','case-image','case-price'].forEach(id => document.getElementById(id).value = '');
+        document.getElementById('case-type').value = 'paid';
+        newPromoList = [];
+        renderNewPromoList();
+        renderPackages();
+        alert("Yangi paket muvaffaqiyatli qo‘shildi!");
+    }
+
+    function deletePackage(id) {
+        if (confirm("Bu paketni o‘chirishni xohlaysizmi?")) {
+            packages = packages.filter(p => p.id !== id);
+            delete promoCodes[id];
+            localStorage.setItem('packages', JSON.stringify(packages));
+            localStorage.setItem('promoCodes', JSON.stringify(promoCodes));
+            renderPackages();
+        }
+    }
+
+    function renderPackages() {
+        const container = document.getElementById('case-list');
+        if (!packages.length) {
+            container.innerHTML = `<p style="grid-column:1/-1;text-align:center;color:#888;font-size:1.1rem;margin:40px 0;">
+                <i class="fas fa-box-open fa-3x mb-3" style="color:#444;"></i><br>
+                Hozircha paket yo‘q. Yangi qo‘shing!
+            </p>`;
+            return;
+        }
+
+        container.innerHTML = packages.map(p => {
+            const codes = promoCodes[p.id] || [];
+            return `
+                <div class="case-card">
+                    <img src="${p.image}" alt="${p.name}" onerror="this.src='https://via.placeholder.com/600x400/1a1a2e/666?text=No+Image'" loading="lazy">
+                    <h3>${p.name}</h3>
+                    <p>${p.desc || 'Tavsif yo‘q'}</p>
+                    <p style="font-weight:700;color:${p.type==='free'?'#ff00b8':'#00ff9d'}">
+                        ${p.type === 'free' ? 'TEKİN' : p.price.toLocaleString() + ' so‘m'}
+                    </p>
+                    <span class="case-type ${p.type}">${p.type === 'free' ? 'TEKİN' : 'PULLIK'}</span>
+
+                    <div class="promo-section">
+                        <div style="font-size:0.9rem;color:#aaa;margin-bottom:8px;">
+                            <i class="fas fa-key"></i> Kodlar: ${codes.length}
+                        </div>
+                        <div class="promo-list">
+                            ${codes.slice(0,4).map(c => `<div class="promo-tag">${c}</div>`).join('')}
+                            ${codes.length > 4 ? `<span style="color:#666;">+${codes.length-4}</span>` : ''}
+                        </div>
+                    </div>
+
+                    <button class="btn btn-danger" style="margin-top:16px; width:100%;" onclick="deletePackage('${p.id}')">
+                        <i class="fas fa-trash"></i> O‘chirish
+                    </button>
+                </div>
+            `;
+        }).join('');
+    }
+
+    // Yuklash
+    document.getElementById('case-list').innerHTML = Array(3).fill().map(() => `
+        <div class="case-card">
+            <div class="skeleton skeleton-img"></div>
+            <div class="skeleton skeleton-title"></div>
+            <div class="skeleton skeleton-desc"></div>
+            <div class="skeleton skeleton-tag"></div>
+        </div>
+    `).join('');
+
+    setTimeout(() => {
+        renderPackages();
+        renderNewPromoList();
+    }, 600);
+</script>
+
+</body>
+</html>
